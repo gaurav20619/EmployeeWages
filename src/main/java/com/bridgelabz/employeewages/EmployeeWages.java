@@ -1,40 +1,54 @@
 package com.bridgelabz.employeewages;
+import java.util.Random;
 
 public class EmployeeWages {
-    public static final int isPartTime = 1;
-    public static final int isFullTime = 2;
-    public static final int empRatePerHour = 20;
-    public static final int numOfWorkingDays = 20;
-    public static final int maxHrsInMonth = 100;
-    
-    // method for calculating employee wage 
-    public static void wageCalculator() {
-        // variables
-        int empHrs = 0;
-        int totalEmpHrs = 0;
-        int totalWorkingDays = 0;
-        // computation
-        while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays){
-            totalWorkingDays++;
-            int empCheck = (int)(Math.random()*3);
+    final static int FULL_TIME_WORKER = 1;
+    final static int PART_TIME_WORKER = 2;    
+    public static void companyWage(String company, int EMP_RATE_PER_HOUR, int Total_no_Working_Day, int EMP_TOTAL_HOURS) {
+        int totalworkingdays = 0;
+        int empHours = 0;
+        int empWage = 0;
+        int Totalemphrs = 0;
+        System.out.println("Welcome to Employee Wage Builder");
+
+        int Total_emp_wage = 0;
+        while (Totalemphrs <= EMP_TOTAL_HOURS && totalworkingdays <= Total_no_Working_Day) {
+            totalworkingdays++;
+            Random random = new Random();
+
+            int empCheck = random.nextInt(3);
+
             switch (empCheck) {
-                case isPartTime:
-                    empHrs = 4;
+                case FULL_TIME_WORKER:
+                    empHours = 8;
+
                     break;
-                case isFullTime:
-                    empHrs = 8;
+                case PART_TIME_WORKER:
+                    empHours = 4;
+
                     break;
                 default:
-                    empHrs = 0;
-                    break;
+                    empHours = 0;
             }
-            totalEmpHrs+=empHrs;
-            System.out.println("Day#: "+totalWorkingDays+" Emp Hr: "+ empHrs);
+            Totalemphrs = Totalemphrs + empHours;
+            empWage = empHours * EMP_RATE_PER_HOUR;
+            System.out.println("Daily emp wage is"+empWage);
+            Total_emp_wage = empWage + Totalemphrs;
+            Total_emp_wage = Total_emp_wage * Total_no_Working_Day;
+
+
         }
-        int totalEmpWage = totalEmpHrs * empRatePerHour;
-        System.out.println("Total Emp Wage is "+ totalEmpWage);
+        System.out.println("The Monthly Wage of Employee of " + company + " is" + Total_emp_wage);
     }
-    public static void main(String[] args) {
-        wageCalculator();
-    }
+
+	public static void main(String[] args) {
+		System.out.println("*********************************");
+		companyWage("Bridgelabzs", 20, 20, 200);
+        System.out.println("*********************************");
+        companyWage("D Mart", 30, 30, 300);
+        System.out.println("*********************************");
+        companyWage("HDFC Bank", 50, 20, 220);
+        System.out.println("*********************************");
+
+	}
 }
