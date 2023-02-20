@@ -1,5 +1,10 @@
 package com.bridgelabz.employeewages;
 
+interface IEmployeeWage {
+    public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs);
+    public void companyWage();
+}
+
 public class CompanyEmpWage {
     // declaring instance variables
     final String COMPANY_NAME;
