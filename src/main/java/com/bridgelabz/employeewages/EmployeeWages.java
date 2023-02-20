@@ -1,24 +1,25 @@
 package com.bridgelabz.employeewages;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class EmployeeWages implements IEmployeeWage {
 	// instance variables
-    int noOfCompanies, index;
-    CompanyEmpWage[] companies; //declaring array
-
-    //Constructor for the class EmployeeWage
-    public EmployeeWages(int noOfCompanies) {
-        this.noOfCompanies = noOfCompanies;
-        companies = new CompanyEmpWage[noOfCompanies];
-        index = 0;
-    }
+    int noOfCompanies, index; 
+    
+    ArrayList<CompanyEmpWage> companies; //ArrayList declaration
+    
+  // contructor for EmployeeWage  class
+    public EmployeeWages(){
+      companies=new ArrayList<>();
+  }
     //Assigning to the array
     public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
-        companies[index++] = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+    	CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+        companies.add(company);
     }
-    //Computation of company wage
+    //print company wage
     int companyWage(CompanyEmpWage companyEmpWage) {
-        System.out.println("* Computation of total wage of " + companyEmpWage.COMPANY_NAME + " employee:");
+        System.out.println("* Total wage of " + companyEmpWage.COMPANY_NAME + " employee:");
         int workingHrs, totalWage = 0;
         for (int day = 1, totalWorkingHrs = 0; day <= companyEmpWage.MAX_WORKING_DAYS
                 && totalWorkingHrs <= companyEmpWage.MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs) {
@@ -52,10 +53,10 @@ public class EmployeeWages implements IEmployeeWage {
             System.out.println(company); //overriding the toString() method
         }
     }
-
+    
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation. \n");
-		EmployeeWages emp = new EmployeeWages(3); //creating an object and declaring number of companies = 3
+		EmployeeWages emp = new EmployeeWages(); //creating an object and declaring number of companies = 3
         emp.addCompany("Bridgeabz", 20, 20, 100);
         emp.addCompany("TATA", 34, 23, 130);
         emp.addCompany("BAJAJ", 10, 15, 99);
