@@ -1,8 +1,8 @@
 package com.bridgelabz.employeewages;
 import java.util.Random;
 
-public class EmployeeWages {
-    // instance variables
+public class EmployeeWages implements IEmployeeWage {
+	// instance variables
     int noOfCompanies, index;
     CompanyEmpWage[] companies; //declaring array
 
@@ -13,7 +13,7 @@ public class EmployeeWages {
         index = 0;
     }
     //Assigning to the array
-    void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
+    public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs) {
         companies[index++] = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
     }
     //Computation of company wage
@@ -44,7 +44,7 @@ public class EmployeeWages {
                 return 0; //Absent
         }
     }
-    void companyWage() {
+    public void companyWage() {
         for (CompanyEmpWage company : companies) //for-each loop
         {
             int totalWage = companyWage(company);
@@ -52,7 +52,7 @@ public class EmployeeWages {
             System.out.println(company); //overriding the toString() method
         }
     }
-    
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation. \n");
 		EmployeeWages emp = new EmployeeWages(3); //creating an object and declaring number of companies = 3
@@ -62,3 +62,4 @@ public class EmployeeWages {
         emp.companyWage();
 	}
 }
+
